@@ -1,1 +1,180 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+  int data;
+  struct node *next;
+};
+struct node *head,*temp,*temp1,*newnode;
+struct node * insert_at_beg(struct node *);
+struct node * insert_at_end(struct node *);
+struct node * delete_at_beg(struct node *);
+struct node * delete_at_end(struct node *);
+void display(struct node *);
+main()
+{
+  head=NULL;
+  int ch;
+  while(1)
+  {
+  printf("1-insert at begining\n");
+  printf("2--insert at end\n");
+  printf("3--delete at begining\n");
+  printf("4--delete at end\n");
+  printf("5--display\n");
+  printf("6--exit\n");
+  printf("enter the choice\n");
+scanf("%d",&ch);
+switch(ch)
+{
+  case 1: newnode=(struct node *)malloc(sizeof(struct node));
+                 printf("enter the data\n");
+                 scanf("%d",&newnode->data);
+                 head=insert_at_beg(newnode);
+                 break;
+  case 2: newnode=(struct node *)malloc(sizeof(struct node));
+                 printf("enter the data\n");
+                 scanf("%d",&newnode->data);
+                 head=insert_at_end(newnode);
+                 break;
+case 3: head=delete_at_beg(head);
+               break;
+case 4:head=delete_at_end(head);
+               break;
+case 5: display(head);
+              break;
+case 6: exit(0);break;
+default:printf("invalid choice\n");break;
+}
+}
+}
+
+
+struct node * insert_at_beg(struct node *newnode)
+{
+   if(head==NULL)
+     {
+        head=newnode;
+        newnode->next=head;
+     }
+     else
+     {
+        temp=head;
+        while(temp->next!=head)
+        {
+           temp=temp->next;
+        }
+        temp->next=newnode;
+        newnode->next=head;
+        head=newnode;
+     }
+     return(head);
+}
+
+
+struct node * insert_at_end(struct node *newnode)
+{
+   if(head==NULL)
+     {
+        head=newnode;
+        newnode->next=head;
+     }
+     else
+     {
+        temp=head;
+        while(temp->next!=head)
+        {
+           temp=temp->next;
+        }
+        temp->next=newnode;
+        newnode->next=head;
+     }
+     return(head);
+}
+
+
+
+struct node * delete_at_beg(struct node *head)
+{
+   if(head==NULL)
+     {
+        printf("CLL is empty--cant delete\n");
+     }
+     else
+     {
+         if(head->next==head)
+         {
+            printf("node deleted=%d\n",head->data);
+            free(head);
+            head=NULL;
+         }
+         else
+         {
+             temp=head;
+             while(temp->next!=head)
+             {
+               temp=temp->next;
+             }
+              printf("node deleted=%d\n",head->data);
+              temp1=head->next;
+              free(head);
+              temp->next=temp1;
+              head=temp1;
+         }
+     }
+     return(head);
+}
+
+
+
+struct node * delete_at_end(struct node *head)
+{
+   if(head==NULL)
+     {
+        printf("CLL is empty--cant delete\n");
+     }
+     else
+     {
+         if(head->next==head)
+         {
+            printf("node deleted=%d\n",head->data);
+            free(head);
+            head=NULL;
+         }
+         else
+         {
+             temp=head;
+             while(temp->next!=head)
+             {
+             temp1=temp;
+               temp=temp->next;
+             }
+              printf("node deleted=%d\n",temp->data);
+             free(temp);
+             temp1->next=head;
+         }
+     }
+     return(head);
+}
+
+
+
+void display(struct node *head)
+{
+  if(head==NULL)
+     {
+        printf("CLL is empty\n");
+     }
+     else
+     {
+         temp=head;
+         while(temp->next!=head)
+         {
+            printf("%d->",temp->data);
+            temp=temp->next;
+         }
+         printf("%d->\n",temp->data);
+     }
+}
+
 
