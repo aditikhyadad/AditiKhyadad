@@ -14,4 +14,6 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+![My Example Image]()
 ![My Example Image]([https://github.com/username/repository/blob/main/image.png](https://github.com/aditikhyadad/AditiKhyadad/blob/main/angular.png))
